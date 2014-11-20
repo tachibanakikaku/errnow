@@ -1,0 +1,41 @@
+<% if notice %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class='page-header'>
+  <h1>
+    <%= @application.name %>
+  </h1>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+<div class="btn-group pull-right">
+  <%= link_to 'アプリケーションの編集', edit_application_path(@application), class: 'btn btn-primary' %>
+  <%= link_to 'ページの登録', application_pages_new_path(@application), class: 'btn btn-success' %>
+</div>
+</div>
+</div>
+
+<p></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    説明
+  </div>
+  <div class="panel-body">
+    <%= @application.description %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    登録ページ
+  </div>
+  <div class="panel-body">
+    <%= @application.description %>
+  </div>
+</div>
+

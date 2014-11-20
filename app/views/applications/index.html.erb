@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>アプリケーションリスト</h1>
+</div>
+
+<div class="list-group">
+  <% @applications.each do |appl| %>
+    <%= link_to(appl, class: 'list-group-item') do %>
+      <h4>
+        <%= appl.name %>
+      </h4>
+      <p class="list-group-item-text">
+        <%= appl.description %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+  </tbody>
+</table>
+
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to '新規アプリケーション', new_application_path, class: 'btn btn-primary pull-right'%>
+  </div>
+</div>
