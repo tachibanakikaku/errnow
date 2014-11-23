@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#gem 'tencryptor', git: 'https://github.com/tachibanakikaku/tencryptor.git'
+gem 'tencryptor', path: '/Users/taijimiyabe/.rvm/gems/ruby-2.1.3/gems/tencryptor-0.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -25,6 +27,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
+# CKEditor http://ckeditor.com/, http://joppot.info/2014/09/01/1958
+gem 'ckeditor'
+ 
+gem 'paperclip'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

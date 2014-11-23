@@ -1,0 +1,26 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>ステータスコード</th>
+			<th>コメント</th>
+			<th>作成日</th>
+			<th>更新日</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% pages.each do |page| %>
+		<tr>
+			<td><%= Page::STATUS_CODES.code_to_desc page.status_code %></td>
+			<td><%= page.comment %></td>
+			<td><%= time_format page.created_at %></td>
+			<td><%= time_format page.updated_at %></td>
+			<td>
+				<%= link_to '編集', edit_application_page_path(page.application, page.status_code), class: 'btn btn-success' %>
+				<%= link_to '削除', application_page_path(page.application, page.status_code), method: :delete, class: 'btn btn-danger',
+						data: '本当に削除しますか？' %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

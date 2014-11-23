@@ -11,12 +11,14 @@
 </div>
 
 <div class="row">
-<div class="col-md-12">
-<div class="btn-group pull-right">
-  <%= link_to 'アプリケーションの編集', edit_application_path(@application), class: 'btn btn-primary' %>
-  <%= link_to 'ページの登録', application_pages_new_path(@application), class: 'btn btn-success' %>
-</div>
-</div>
+  <div class="col-md-12">
+		<div class="pull-right">
+    	<%= link_to 'アプリケーションの編集', edit_application_path(@application), class: 'btn btn-primary' %>
+    	<%= link_to 'アプリケーションの削除', @application, method: :delete, class: 'btn btn-danger',
+        	data: '本当に削除しますか？' %>
+    	<%= link_to 'ページの登録', new_application_page_path(@application), class: 'btn btn-success' %>
+		</div>
+  </div>
 </div>
 
 <p></p>
@@ -35,7 +37,7 @@
     登録ページ
   </div>
   <div class="panel-body">
-    <%= @application.description %>
+    <%= render partial: 'pages/list', locals: { pages: @application.pages } %>
   </div>
 </div>
 

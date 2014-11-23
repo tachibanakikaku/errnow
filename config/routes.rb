@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :applications do
-    get 'pages/new' => 'pages#new'
-    get 'pages/:id' => 'pages#show'
+		resources :pages, param: :status_code, except: [:index, :update]
+		put   '/pages/:page_id' => 'pages#update'
+		patch '/pages/:page_id' => 'pages#update'
   end
 
 

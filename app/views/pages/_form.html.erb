@@ -1,0 +1,30 @@
+<%= form_for([@page.application, @page], class: 'form-horizontal', role: 'form') do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert aler-danger">
+        <ul>
+          <% @page.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+		<%= f.label :status_code %><br>
+    <%= f.select :status_code, Page::STATUS_CODES, {tabindex: 1}, class: 'form-control selectpicker' %>
+  </div>
+  <div class="form-group">
+		<%= f.label :content %><br>
+    <%= f.cktext_area :content, class: 'form-control', rows: 16, :ckeditor => {:language => 'ja'} %>
+  </div>
+  <div class="form-group">
+		<%= f.label :comment %><br>
+    <%= f.text_area :comment, class: 'form-control', rows: 5 %>
+  </div>
+  <div class="actions pull-right">
+    <%= f.submit '登録', class: 'btn btn-primary', data: { disable_with: '登録...' } %>
+    <%= link_to 'キャンセル', @page.application, class: 'btn btn-default' %>
+  </div>
+<% end %>

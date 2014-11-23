@@ -2,19 +2,23 @@ module ApiAuth
 
   extend ActiveSupport::Concern
 
-  def authenticate
+  def api_authenticate
     token = request.headers['Authorization']
-    token = "abc:def"
-    head :unauthorized unless token
+    unless token
+			head :unauthorized
+			return
+		end
 
     access_key, signature = divide_atuh_header(token)
-    signature = "c6fd559c23826c6958432374a40ae37e4dd6f0c79bfbda8fb9676492a179c650"
-    head :unauthorized unless access_key and signature
+		unless access_key and signature
+    	head :unauthorized
+			return
+		end
 
-    secret = api_secret(access_key)
-    head :unauthorized unless secret
-
-    head :unauthorized unless sign(cannonical_request, secret) == signature
+		unless correct_signature?(signature)
+    	head :unauthorized
+			return
+		end
   end
 
   private
@@ -25,17 +29,19 @@ module ApiAuth
     return token[0...idx], token[idx+1..-1]
   end
 
-  def api_secret(access_key)
-    "def"
-  end
-
-  def cannonical_request
-    "#{request.method}#{request.url}"
-  end
-
-  def sign(str, secret)
-    generator = OpenSSL::Digest.new('sha256')
-    OpenSSL::HMAC.hexdigest(generator, str, secret)
-  end
+  def correct_signature?(signature)
+		Tencryptor.configure do |config|
+		  config.algorithm         = 'sha256'
+		  config.service           = 'my-service'
+		  config.headers           = ['host']
+		  config.region            = 'asia/tokyo'
+		  config.access_key        = 'my-access-key'
+		  config.secret_access_key = 'my-secret_access-key'
+		  config.debug             = false
+		end
+		encriptor = Tencryptor::Encrypter.new
+		hash = encriptor.signature(URI(request.url))
+		signature == hash
+	end
 
 end
