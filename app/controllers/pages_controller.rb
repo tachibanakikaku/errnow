@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   include ApiAuth
 
   before_action :api_authenticate, only: [ :show ]
-  before_action :set_page, only: [ :edit, :destroy ]
+  before_action :set_page, only: [ :show, :edit, :destroy ]
 
   def show
-		render text: "dudada"
+    render text: @page.content
   end
 
   def new
@@ -16,9 +16,9 @@ class PagesController < ApplicationController
   def edit
   end
 
-	def create
+  def create
     @page = Page.new(page_params)
-		@page.application = Application.find(params[:application_id])
+    @page.application = Application.find(params[:application_id])
 
     respond_to do |format|
       if @page.save
@@ -27,7 +27,7 @@ class PagesController < ApplicationController
         format.html { render :new }
       end
     end
-	end
+  end
 
   def update
     @page = Page.find(params[:page_id])
@@ -56,5 +56,5 @@ class PagesController < ApplicationController
     def page_params
       params.require(:page).permit(:status_code, :content, :application_id, :comment)
     end
-	
+  
 end
