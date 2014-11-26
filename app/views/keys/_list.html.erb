@@ -1,0 +1,29 @@
+<div>
+  <%= form_for([:users, @new_key], remote: true, class: 'form-horizontal', role: 'form') do |f| %>
+    <%= f.submit 'キーを追加する', class: 'btn btn-primary pull-right' %>
+  <% end %>
+<div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Access key</th>
+      <th>Secret Access key</th>
+      <th>登録日</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% current_user.keys.each do |key| %>
+    <tr>
+      <td><%= key.access_key %></td>
+      <td><%= key.secret_access_key %></td>
+      <td><%= date_format(key.updated_at) %></td>
+      <td>
+        <%= link_to '削除', users_key_path(key), method: :delete, class: 'btn btn-danger',
+            data: { remote: true, type: 'script', confirm: '本当に削除しますか？' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
