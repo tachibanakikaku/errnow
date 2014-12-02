@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
   include ApiAuth
 
+  skip_before_filter :authenticate_user!, only: [ :show ]
+
   before_action :api_authenticate, only: [ :show ]
+
   before_action :set_page, only: [ :show, :edit, :destroy ]
 
   def show
