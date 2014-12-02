@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-#gem 'tencryptor', git: 'https://github.com/tachibanakikaku/tencryptor.git'
-gem 'tencryptor', path: '/Users/taijimiyabe/.rvm/gems/ruby-2.1.3/gems/tencryptor-0.0.3'
+gem 'tencryptor', git: 'https://github.com/tachibanakikaku/tencryptor.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -42,6 +41,10 @@ gem 'paperclip'
 
 # device
 gem 'devise'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
