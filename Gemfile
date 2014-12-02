@@ -57,3 +57,4 @@ gem 'devise'
 
 my_gemfile = File.expand_path('../Gemfile.personal', __FILE__)
 eval File.read(my_gemfile) if File.exist?(my_gemfile)
+

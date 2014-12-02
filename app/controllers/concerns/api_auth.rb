@@ -3,6 +3,8 @@ module ApiAuth
   extend ActiveSupport::Concern
 
   def api_authenticate
+		return if user_signed_in?
+
     token = request.headers['Authorization']
     unless token
 			head :unauthorized
