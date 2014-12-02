@@ -1,5 +1,7 @@
 # README
 
+[![Circle CI](https://circleci.com/gh/tachibanakikaku/errnow.svg?style=svg)](https://circleci.com/gh/tachibanakikaku/errnow)
+
 ## Prepare for development
 
 ##### rbenv
