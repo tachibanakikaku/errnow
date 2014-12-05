@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.3'
 
 gem 'tencryptor', git: 'https://github.com/tachibanakikaku/tencryptor.git'
 
@@ -44,6 +45,12 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+end
+
+# Heroku
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
