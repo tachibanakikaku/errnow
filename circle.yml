@@ -7,8 +7,14 @@ test:
     - 'rvm-exec 2.1.3 bundle exec rspec --color --require spec_helper spec --format progress'
 
 deployment:
-  production:
+  staging:
     branch: master
+    commands:
+      - git push git@heroku.com:errnow-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app errnow-staging
+
+  production:
+    branch: production
     commands:
       - git push git@heroku.com:errnow.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app errnow
